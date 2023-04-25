@@ -106,3 +106,4 @@ dist
 # Stryker reports
 
 frontend/reports/
+.DS_Store
