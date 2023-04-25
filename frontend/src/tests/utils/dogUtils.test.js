@@ -77,8 +77,8 @@ describe("dogUtils tests", () => {
         test("When dogs is JSON of three dogs, should return that JSON", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
-            const mockdogCollection = { nextId: 10, dogs: threedogs };
+            const threeDogs = dogFixtures.threeDogs;
+            const mockdogCollection = { nextId: 10, dogs: threeDogs };
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock(mockdogCollection));
@@ -100,28 +100,28 @@ describe("dogUtils tests", () => {
         test("Check that getting a dog by id works", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
-            const idToGet = threedogs[1].id;
+            const threeDogs = dogFixtures.threeDogs;
+            const idToGet = threeDogs[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             // act
             const result = dogUtils.getById(idToGet);
 
             // assert
 
-            const expected = { dog: threedogs[1] };
+            const expected = { dog: threeDogs[1] };
             expect(result).toEqual(expected);
         });
 
         test("Check that getting a non-existing dog returns an error", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             // act
             const result = dogUtils.getById(99);
@@ -134,10 +134,10 @@ describe("dogUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             // act
             const result = dogUtils.getById();
@@ -152,7 +152,7 @@ describe("dogUtils tests", () => {
         test("Starting from [], check that adding one dog works", () => {
 
             // arrange
-            const dog = dogFixtures.onedog[0];
+            const dog = dogFixtures.oneDog[0];
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, dogs: [] }));
 
@@ -165,7 +165,7 @@ describe("dogUtils tests", () => {
             // assert
             expect(result).toEqual(dog);
             expect(setItemSpy).toHaveBeenCalledWith("dogs",
-                JSON.stringify({ nextId: 2, dogs: dogFixtures.onedog }));
+                JSON.stringify({ nextId: 2, dogs: dogFixtures.oneDog }));
         });
     });
 
@@ -173,19 +173,19 @@ describe("dogUtils tests", () => {
         test("Check that updating an existing dog works", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
             const updateddog = {
-                ...threedogs[0],
+                ...threeDogs[0],
                 name: "Updated Name"
             };
-            const threedogsUpdated = [
+            const threeDogsUpdated = [
                 updateddog,
-                threedogs[1],
-                threedogs[2]
+                threeDogs[1],
+                threeDogs[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -194,17 +194,17 @@ describe("dogUtils tests", () => {
             const result = dogUtils.update(updateddog);
 
             // assert
-            const expected = { dogCollection: { nextId: 5, dogs: threedogsUpdated } };
+            const expected = { dogCollection: { nextId: 5, dogs: threeDogsUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("dogs", JSON.stringify(expected.dogCollection));
         });
         test("Check that updating an non-existing dog returns an error", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -229,15 +229,15 @@ describe("dogUtils tests", () => {
         test("Check that deleting a dog by id works", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
-            const idToDelete = threedogs[1].id;
-            const threedogsUpdated = [
-                threedogs[0],
-                threedogs[2]
+            const threeDogs = dogFixtures.threeDogs;
+            const idToDelete = threeDogs[1].id;
+            const threeDogsUpdated = [
+                threeDogs[0],
+                threeDogs[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -247,17 +247,17 @@ describe("dogUtils tests", () => {
 
             // assert
 
-            const expected = { dogCollection: { nextId: 5, dogs: threedogsUpdated } };
+            const expected = { dogCollection: { nextId: 5, dogs: threeDogsUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("dogs", JSON.stringify(expected.dogCollection));
         });
         test("Check that deleting a non-existing dog returns an error", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -273,10 +273,10 @@ describe("dogUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threedogs = dogFixtures.threedogs;
+            const threeDogs = dogFixtures.threeDogs;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threedogs }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, dogs: threeDogs }));
 
             // act
             const result = dogUtils.del();
