@@ -12,7 +12,7 @@ import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage"
 
 import DogsCreatePage from "main/pages/Dogs/DogsCreatePage";
 import DogsEditPage from "main/pages/Dogs/DogsEditPage";
-
+import DogDetailsPage from "main/pages/Dogs/DogsDetailsPage.js";
 import DogIndexPage from "main/pages/Dogs/DogIndexPage";
 
 
@@ -40,7 +40,7 @@ function App() {
 
         <Route exact path="/dogs/create" element={<DogsCreatePage />} />
         <Route exact path="/dogs/edit/:id" element={<DogsEditPage />} />
-
+        <Route exact path="/dogs/details/:id" element={<DogDetailsPage />} />
         <Route exact path="/dogs/" element={<DogIndexPage />} />
 
 
