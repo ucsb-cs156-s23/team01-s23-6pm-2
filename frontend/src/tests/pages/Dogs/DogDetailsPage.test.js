@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import DogsDetailsPage from "main/pages/Dogs/DogsDetailsPage";
+import DogDetailsPage from "main/pages/Dogs/DogDetailsPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -20,8 +20,8 @@ jest.mock('main/utils/dogUtils', () => {
                 return {
                     dog: {
                         id: 3,
-                        name: "Freebirds",
-                        description: "Burritos"
+                        name: "Tom",
+                        breed: "German Shepherd"
                     }
                 }
             }
@@ -29,14 +29,14 @@ jest.mock('main/utils/dogUtils', () => {
     }
 });
 
-describe("RestaurantDetailsPage tests", () => {
+describe("DogDetailsPage tests", () => {
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <DogsDetailsPage />
+                    <DogDetailsPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -46,12 +46,12 @@ describe("RestaurantDetailsPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <DogsDetailsPage />
+                    <DogDetailsPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
-        expect(screen.getByText("Freebirds")).toBeInTheDocument();
-        expect(screen.getByText("Burritos")).toBeInTheDocument();
+        expect(screen.getByText("Tom")).toBeInTheDocument();
+        expect(screen.getByText("German Shepherd")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();

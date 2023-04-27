@@ -12,7 +12,7 @@ export default function DogDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>Dog Details</h1>
-        <DogTable dog={[response.dog]} showButtons={false} />
+        <DogTable dogs={[response.dog]} showButtons={false} />
       </div>
     </BasicLayout>
   )

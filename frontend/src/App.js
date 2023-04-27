@@ -12,7 +12,7 @@ import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage"
 
 import DogsCreatePage from "main/pages/Dogs/DogsCreatePage";
 import DogsEditPage from "main/pages/Dogs/DogsEditPage";
-import DogDetailsPage from "main/pages/Dogs/DogsDetailsPage.js";
+import DogDetailsPage from "main/pages/Dogs/DogDetailsPage.js";
 import DogIndexPage from "main/pages/Dogs/DogIndexPage";
 
 function App() {
