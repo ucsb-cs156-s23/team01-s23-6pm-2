@@ -9,8 +9,13 @@ import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+
 import DogsCreatePage from "main/pages/Dogs/DogsCreatePage";
 import DogsEditPage from "main/pages/Dogs/DogsEditPage";
+
+import DogIndexPage from "main/pages/Dogs/DogIndexPage";
+
+
 
 function App() {
 
@@ -32,8 +37,13 @@ function App() {
         <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
 
 
+
         <Route exact path="/dogs/create" element={<DogsCreatePage />} />
         <Route exact path="/dogs/edit/:id" element={<DogsEditPage />} />
+
+        <Route exact path="/dogs/" element={<DogIndexPage />} />
+
+
       </Routes>
     </BrowserRouter>
   );
