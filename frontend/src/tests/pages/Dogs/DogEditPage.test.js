@@ -24,8 +24,8 @@ jest.mock('main/utils/dogUtils', () => {
                 return {
                     dog: {
                         id: 3,
-                        name: "Freebirds",
-                        description: "Burritos"
+                        name: "Tom",
+                        breed: "German Shepherd"
                     }
                 }
             }
@@ -59,8 +59,8 @@ describe("dogEditPage tests", () => {
         );
 
         expect(screen.getByTestId("DogForm-name")).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Freebirds')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Burritos')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Tom')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('German Shepherd')).toBeInTheDocument();
     });
 
     test("redirects to /Dogs on submit", async () => {
@@ -70,8 +70,8 @@ describe("dogEditPage tests", () => {
         mockUpdate.mockReturnValue({
             "Dog": {
                 id: 3,
-                name: "South Coast Deli (Goleta)",
-                description: "Sandwiches, Salads and more"
+                name: "Tom",
+                breed: "German Shepherd"
             }
         });
 
@@ -87,15 +87,15 @@ describe("dogEditPage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const breedInput = screen.getByLabelText("Breed");
+        expect(breedInput).toBeInTheDocument();
 
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli (Goleta)' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches, Salads and more' } })
+            fireEvent.change(nameInput, { target: { value: 'Tom' } })
+            fireEvent.change(breedInput, { target: { value: 'German Shepherd' } })
             fireEvent.click(updateButton);
         });
 
@@ -105,7 +105,7 @@ describe("dogEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updateddog: {"Dog":{"id":3,"name":"South Coast Deli (Goleta)","description":"Sandwiches, Salads and more"}`
+        const expectedMessage =  `updateddog: {"Dog":{"id":3,"name":"Tom","breed":"German Shepherd"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

@@ -15,8 +15,6 @@ import DogsEditPage from "main/pages/Dogs/DogsEditPage";
 import DogDetailsPage from "main/pages/Dogs/DogsDetailsPage.js";
 import DogIndexPage from "main/pages/Dogs/DogIndexPage";
 
-
-
 function App() {
 
   const reload = () => window.location.reload();
@@ -35,8 +33,6 @@ function App() {
         <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
         <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
         <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
-
-
 
         <Route exact path="/dogs/create" element={<DogsCreatePage />} />
         <Route exact path="/dogs/edit/:id" element={<DogsEditPage />} />
