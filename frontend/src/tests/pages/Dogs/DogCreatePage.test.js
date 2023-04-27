@@ -40,8 +40,8 @@ describe("dogCreatePage tests", () => {
         mockAdd.mockReturnValue({
             "dog": {
                 id: 3,
-                name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                name: "Tom",
+                breed: "German Shepherd"
             }
         });
 
@@ -56,16 +56,15 @@ describe("dogCreatePage tests", () => {
         const nameInput = screen.getByLabelText("Name");
         expect(nameInput).toBeInTheDocument();
 
-
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const breedInput = screen.getByLabelText("Breed");
+        expect(breedInput).toBeInTheDocument();
 
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(nameInput, { target: { value: 'Tom' } })
+            fireEvent.change(breedInput, { target: { value: 'German Shepherd' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +74,7 @@ describe("dogCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdDog: {"dog":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdDog: {"dog":{"id":3,"name":"Tom","breed":"German Shepherd"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
