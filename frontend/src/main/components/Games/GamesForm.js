@@ -45,8 +45,7 @@ function GamesForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     type="text"
                     isInvalid={Boolean(errors.name)}
                     {...register("name", {
-                        required: "Name is required.",
-                        }
+                        required: "Name is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -62,8 +61,7 @@ function GamesForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     type="text"
                     isInvalid={Boolean(errors.developer)}
                     {...register("developer", {
-                        required: "Developer is required.",
-                        }
+                        required: "Developer is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
