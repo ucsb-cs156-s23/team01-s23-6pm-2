@@ -6,7 +6,7 @@ describe("ucsbBuildingsUtils tests", () => {
     // the value passed in will be convertd to JSON and returned as the value
     // for the key "ucsbBuildingss".  Any other key results in an error
     const createGetItemMock = (returnValue) => (key) => {
-        if (key === "ucsbBuildings") {
+        if (key === "ucsbBuildingss") {
             return JSON.stringify(returnValue);
         } else {
             throw new Error("Unexpected key: " + key);
@@ -15,7 +15,7 @@ describe("ucsbBuildingsUtils tests", () => {
 
     describe("get", () => {
 
-        test("When ucsbBuildings is undefined in local storage, should set to empty list", () => {
+        test("When ucsbBuildingss is undefined in local storage, should set to empty list", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
@@ -28,14 +28,14 @@ describe("ucsbBuildingsUtils tests", () => {
             const result = ucsbBuildingsUtils.get();
 
             // assert
-            const expected = { nextId: 1, ucsbBuildings: [] } ;
+            const expected = { nextId: 1, ucsbBuildingss: [] } ;
             expect(result).toEqual(expected);
 
             const expectedJSON = JSON.stringify(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildings", expectedJSON);
+            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildingss", expectedJSON);
         });
 
-        test("When ucsbBuildings is null in local storage, should set to empty list", () => {
+        test("When ucsbBuildingss is null in local storage, should set to empty list", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
@@ -48,18 +48,18 @@ describe("ucsbBuildingsUtils tests", () => {
             const result = ucsbBuildingsUtils.get();
 
             // assert
-            const expected = { nextId: 1, ucsbBuildings: [] } ;
+            const expected = { nextId: 1, ucsbBuildingss: [] } ;
             expect(result).toEqual(expected);
 
             const expectedJSON = JSON.stringify(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildings", expectedJSON);
+            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildingss", expectedJSON);
         });
 
-        test("When ucsbBuildings is [] in local storage, should return []", () => {
+        test("When ucsbBuildingss is [] in local storage, should return []", () => {
 
             // arrange
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, ucsbBuildings: [] }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, ucsbBuildingss: [] }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -68,7 +68,7 @@ describe("ucsbBuildingsUtils tests", () => {
             const result = ucsbBuildingsUtils.get();
 
             // assert
-            const expected = { nextId: 1, ucsbBuildings: [] };
+            const expected = { nextId: 1, ucsbBuildingss: [] };
             expect(result).toEqual(expected);
 
             expect(setItemSpy).not.toHaveBeenCalled();
@@ -77,8 +77,8 @@ describe("ucsbBuildingsUtils tests", () => {
         test("When ucsbBuildingss is JSON of three ucsbBuildingss, should return that JSON", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
-            const mockucsbBuildingsCollection = { nextId: 10, ucsbBuildings: threeucsbBuildings };
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const mockucsbBuildingsCollection = { nextId: 10, ucsbBuildingss: threeucsbbuildings };
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock(mockucsbBuildingsCollection));
@@ -100,44 +100,44 @@ describe("ucsbBuildingsUtils tests", () => {
         test("Check that getting a ucsbBuildings by id works", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
-            const idToGet = threeucsbBuildings[1].id;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const idToGet = threeucsbbuildings[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             // act
             const result = ucsbBuildingsUtils.getById(idToGet);
 
             // assert
 
-            const expected = { ucsbBuilding: threeucsbBuildings[1] };
+            const expected = { ucsbBuildings: threeucsbbuildings[1] };
             expect(result).toEqual(expected);
         });
 
-        test("Check that getting a non-existing ucsbBuilding returns an error", () => {
+        test("Check that getting a non-existing ucsbBuildings returns an error", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             // act
             const result = ucsbBuildingsUtils.getById(99);
 
             // assert
-            const expectedError = `ucsbBuilding with id 99 not found`
+            const expectedError = `ucsbBuildings with id 99 not found`
             expect(result).toEqual({ error: expectedError });
         });
 
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             // act
             const result = ucsbBuildingsUtils.getById();
@@ -149,95 +149,95 @@ describe("ucsbBuildingsUtils tests", () => {
 
     });
     describe("add", () => {
-        test("Starting from [], check that adding one ucsbBuilding works", () => {
+        test("Starting from [], check that adding one ucsbBuildings works", () => {
 
             // arrange
-            const ucsbBuilding = ucsbBuildingsFixtures.oneucsbBuilding[0];
+            const ucsbBuildings = ucsbBuildingsFixtures.oneucsbBuilding[0];
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, ucsbBuildings: [] }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, ucsbBuildingss: [] }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = ucsbBuildingsUtils.add(ucsbBuilding);
+            const result = ucsbBuildingsUtils.add(ucsbBuildings);
 
             // assert
-            expect(result).toEqual(ucsbBuilding);
-            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildings",
-                JSON.stringify({ nextId: 2, ucsbBuildings: ucsbBuildingsFixtures.oneucsbBuilding }));
+            expect(result).toEqual(ucsbBuildings);
+            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildingss",
+                JSON.stringify({ nextId: 2, ucsbBuildingss: ucsbBuildingsFixtures.oneucsbBuilding }));
         });
     });
 
     describe("update", () => {
-        test("Check that updating an existing ucsbBuilding works", () => {
+        test("Check that updating an existing ucsbBuildings works", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
-            const updateducsbBuilding = {
-                ...threeucsbBuildings[0],
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const updateducsbBuildings = {
+                ...threeucsbbuildings[0],
                 name: "Updated Name"
             };
-            const threeucsbBuildingsUpdated = [
-                updateducsbBuilding,
-                threeucsbBuildings[1],
-                threeucsbBuildings[2]
+            const threeucsbbuildingsUpdated = [
+                updateducsbBuildings,
+                threeucsbbuildings[1],
+                threeucsbbuildings[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
             // act
-            const result = ucsbBuildingsUtils.update(updateducsbBuilding);
+            const result = ucsbBuildingsUtils.update(updateducsbBuildings);
 
             // assert
-            const expected = { ucsbBuildingsCollection: { nextId: 5, ucsbBuildings: threeucsbBuildingsUpdated } };
+            const expected = { ucsbBuildingsCollection: { nextId: 5, ucsbBuildingss: threeucsbbuildingsUpdated } };
             expect(result).toEqual(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildings", JSON.stringify(expected.ucsbBuildingsCollection));
+            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildingss", JSON.stringify(expected.ucsbBuildingsCollection));
         });
-        test("Check that updating an non-existing ucsbBuilding returns an error", () => {
+        test("Check that updating an non-existing ucsbBuildings returns an error", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
 
-            const updateducsbBuilding = {
+            const updateducsbBuildings = {
                 id: 99,
                 name: "Fake Name",
                 description: "Fake Description"
             }
 
             // act
-            const result = ucsbBuildingsUtils.update(updateducsbBuilding);
+            const result = ucsbBuildingsUtils.update(updateducsbBuildings);
 
             // assert
-            const expectedError = `ucsbBuilding with id 99 not found`
+            const expectedError = `ucsbBuildings with id 99 not found`
             expect(result).toEqual({ error: expectedError });
             expect(setItemSpy).not.toHaveBeenCalled();
         });
     });
 
     describe("del", () => {
-        test("Check that deleting a ucsbBuilding by id works", () => {
+        test("Check that deleting a ucsbBuildings by id works", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
-            const idToDelete = threeucsbBuildings[1].id;
-            const threeucsbBuildingsUpdated = [
-                threeucsbBuildings[0],
-                threeucsbBuildings[2]
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const idToDelete = threeucsbbuildings[1].id;
+            const threeucsbbuildingsUpdated = [
+                threeucsbbuildings[0],
+                threeucsbbuildings[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -247,17 +247,17 @@ describe("ucsbBuildingsUtils tests", () => {
 
             // assert
 
-            const expected = { ucsbBuildingsCollection: { nextId: 5, ucsbBuildings: threeucsbBuildingsUpdated } };
+            const expected = { ucsbBuildingsCollection: { nextId: 5, ucsbBuildingss: threeucsbbuildingsUpdated } };
             expect(result).toEqual(expected);
-            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildings", JSON.stringify(expected.ucsbBuildingsCollection));
+            expect(setItemSpy).toHaveBeenCalledWith("ucsbBuildingss", JSON.stringify(expected.ucsbBuildingsCollection));
         });
-        test("Check that deleting a non-existing ucsbBuilding returns an error", () => {
+        test("Check that deleting a non-existing ucsbBuildings returns an error", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -266,17 +266,17 @@ describe("ucsbBuildingsUtils tests", () => {
             const result = ucsbBuildingsUtils.del(99);
 
             // assert
-            const expectedError = `ucsbBuilding with id 99 not found`
+            const expectedError = `ucsbBuildings with id 99 not found`
             expect(result).toEqual({ error: expectedError });
             expect(setItemSpy).not.toHaveBeenCalled();
         });
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threeucsbBuildings = ucsbBuildingsFixtures.threeucsbBuildings;
+            const threeucsbbuildings = ucsbBuildingsFixtures.threeucsbBuildings;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildings: threeucsbBuildings }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, ucsbBuildingss: threeucsbbuildings }));
 
             // act
             const result = ucsbBuildingsUtils.del();

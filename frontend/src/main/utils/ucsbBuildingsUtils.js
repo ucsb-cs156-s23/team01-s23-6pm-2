@@ -1,13 +1,13 @@
-// get ucsbBuildings from local storage
+// get ucsbBuildingss from local storage
 const get = () => {
-    const ucsbBuildingsValue = localStorage.getItem("ucsbBuildings");
+    const ucsbBuildingsValue = localStorage.getItem("ucsbBuildingss");
     if (ucsbBuildingsValue === undefined) {
-        const ucsbBuildingsCollection = { nextId: 1, ucsbBuildings: [] }
+        const ucsbBuildingsCollection = { nextId: 1, ucsbBuildingss: [] }
         return set(ucsbBuildingsCollection);
     }
     const ucsbBuildingsCollection = JSON.parse(ucsbBuildingsValue);
     if (ucsbBuildingsCollection === null) {
-        const ucsbBuildingsCollection = { nextId: 1, ucsbBuildings: [] }
+        const ucsbBuildingsCollection = { nextId: 1, ucsbBuildingss: [] }
         return set(ucsbBuildingsCollection);
     }
     return ucsbBuildingsCollection;
@@ -18,67 +18,67 @@ const getById = (id) => {
         return { "error": "id is a required parameter" };
     }
     const ucsbBuildingsCollection = get();
-    const ucsbBuildings = ucsbBuildingsCollection.ucsbBuildings;
+    const ucsbBuildingss = ucsbBuildingsCollection.ucsbBuildingss;
 
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = ucsbBuildings.findIndex((r) => r.id == id);
+    const index = ucsbBuildingss.findIndex((r) => r.id == id);
     if (index === -1) {
-        return { "error": `ucsbBuilding with id ${id} not found` };
+        return { "error": `ucsbBuildings with id ${id} not found` };
     }
-    return { ucsbBuilding: ucsbBuildings[index] };
+    return { ucsbBuildings: ucsbBuildingss[index] };
 }
 
-// set ucsbBuildings in local storage
+// set ucsbBuildingss in local storage
 const set = (ucsbBuildingsCollection) => {
-    localStorage.setItem("ucsbBuildings", JSON.stringify(ucsbBuildingsCollection));
+    localStorage.setItem("ucsbBuildingss", JSON.stringify(ucsbBuildingsCollection));
     return ucsbBuildingsCollection;
 };
 
-// add a ucsbBuilding to local storage
-const add = (ucsbBuilding) => {
+// add a ucsbBuildings to local storage
+const add = (ucsbBuildings) => {
     const ucsbBuildingsCollection = get();
-    ucsbBuilding = { ...ucsbBuilding, id: ucsbBuildingsCollection.nextId };
+    ucsbBuildings = { ...ucsbBuildings, id: ucsbBuildingsCollection.nextId };
     ucsbBuildingsCollection.nextId++;
-    ucsbBuildingsCollection.ucsbBuildings.push(ucsbBuilding);
+    ucsbBuildingsCollection.ucsbBuildingss.push(ucsbBuildings);
     set(ucsbBuildingsCollection);
-    return ucsbBuilding;
+    return ucsbBuildings;
 };
 
-// update a ucsbBuilding in local storage
-const update = (ucsbBuilding) => {
+// update a ucsbBuildings in local storage
+const update = (ucsbBuildings) => {
     const ucsbBuildingsCollection = get();
 
-    const ucsbBuildings = ucsbBuildingsCollection.ucsbBuildings;
+    const ucsbBuildingss = ucsbBuildingsCollection.ucsbBuildingss;
 
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = ucsbBuildings.findIndex((r) => r.id == ucsbBuilding.id);
+    const index = ucsbBuildingss.findIndex((r) => r.id == ucsbBuildings.id);
     if (index === -1) {
-        return { "error": `ucsbBuilding with id ${ucsbBuilding.id} not found` };
+        return { "error": `ucsbBuildings with id ${ucsbBuildings.id} not found` };
     }
-    ucsbBuildings[index] = ucsbBuilding;
+    ucsbBuildingss[index] = ucsbBuildings;
     set(ucsbBuildingsCollection);
     return { ucsbBuildingsCollection: ucsbBuildingsCollection };
 };
 
-// delete a ucsbBuilding from local storage
+// delete a ucsbBuildings from local storage
 const del = (id) => {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
     const ucsbBuildingsCollection = get();
-    const ucsbBuildings = ucsbBuildingsCollection.ucsbBuildings;
+    const ucsbBuildingss = ucsbBuildingsCollection.ucsbBuildingss;
 
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = ucsbBuildings.findIndex((r) => r.id == id);
+    const index = ucsbBuildingss.findIndex((r) => r.id == id);
     if (index === -1) {
-        return { "error": `ucsbBuilding with id ${id} not found` };
+        return { "error": `ucsbBuildings with id ${id} not found` };
     }
-    ucsbBuildings.splice(index, 1);
+    ucsbBuildingss.splice(index, 1);
     set(ucsbBuildingsCollection);
     return { ucsbBuildingsCollection: ucsbBuildingsCollection };
 };
 
-const ucsbBuildingsUtilsUtils = {
+const ucsbBuildingsUtils = {
     get,
     getById,
     add,
@@ -86,7 +86,7 @@ const ucsbBuildingsUtilsUtils = {
     del
 };
 
-export { ucsbBuildingsUtilsUtils };
+export { ucsbBuildingsUtils };
 
 
 
