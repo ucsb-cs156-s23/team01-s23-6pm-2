@@ -39,6 +39,8 @@ function App() {
         <Route exact path="/dogs/details/:id" element={<DogDetailsPage />} />
         <Route exact path="/dogs/" element={<DogIndexPage />} />
 
+        <Route exact path="/dogs/create" element={<DogsCreatePage />} />
+
 
       </Routes>
     </BrowserRouter>
