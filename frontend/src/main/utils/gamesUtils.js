@@ -25,7 +25,7 @@ const getById = (id) => {
     if (index === -1) {
         return { "error": `game with id ${id} not found` };
     }
-    return { game: games[index] };
+    return { games: games[index] };
 }
 
 // set games in local storage
