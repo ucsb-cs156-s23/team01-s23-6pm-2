@@ -88,5 +88,3 @@ const ucsbBuildingsUtils = {
 
 export { ucsbBuildingsUtils };
 
-
-
