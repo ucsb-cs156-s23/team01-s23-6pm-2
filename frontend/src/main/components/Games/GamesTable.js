@@ -40,8 +40,8 @@ export default function GamesTable({
             accessor: 'name',
         },
         {
-            Header: 'Breed',
-            accessor: 'breed',
+            Header: 'Developer',
+            accessor: 'developer',
         }
     ];
 
