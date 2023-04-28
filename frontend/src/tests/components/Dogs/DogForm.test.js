@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("DogForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name","Description"];
+    const expectedHeaders = ["Name","Breed"];
     const testId = "DogForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -24,7 +24,7 @@ describe("DogForm tests", () => {
             <QueryClientProvider client={queryClient}>
                 <Router>
                     <DogForm />
-                </Router>
+                </Router>ut 
             </QueryClientProvider>
         );
 
