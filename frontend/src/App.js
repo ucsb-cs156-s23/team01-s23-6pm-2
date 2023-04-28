@@ -15,6 +15,11 @@ import DogsEditPage from "main/pages/Dogs/DogsEditPage";
 import DogDetailsPage from "main/pages/Dogs/DogDetailsPage.js";
 import DogIndexPage from "main/pages/Dogs/DogIndexPage";
 
+import GamesCreatePage from "main/pages/Games/GamesCreatePage";
+import GamesEditPage from "main/pages/Games/GamesEditPage";
+import GamesDetailsPage from "main/pages/Games/GamesDetailsPage.js";
+import GamesIndexPage from "main/pages/Games/GamesIndexPage";
+
 function App() {
 
   const reload = () => window.location.reload();
@@ -39,6 +44,10 @@ function App() {
         <Route exact path="/dogs/details/:id" element={<DogDetailsPage />} />
         <Route exact path="/dogs/" element={<DogIndexPage />} />
 
+        <Route exact path="/games/create" element={<GamesCreatePage />} />
+        <Route exact path="/games/edit/:id" element={<GamesEditPage />} />
+        <Route exact path="/games/details/:id" element={<GamesDetailsPage />} />
+        <Route exact path="/games/" element={<GamesIndexPage />} />
 
       </Routes>
     </BrowserRouter>
