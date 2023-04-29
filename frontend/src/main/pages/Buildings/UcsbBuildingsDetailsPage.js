@@ -12,7 +12,7 @@ export default function UcsbBuildingsDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>Building Details</h1>
-        <UcsbBuildingsTable ucsbbuildings={[response.ucsbbuildings]} showButtons={false} />
+        <UcsbBuildingsTable ucsbbuildings={[response.ucsbBuildings]} showButtons={false} />
       </div>
     </BasicLayout>
   )

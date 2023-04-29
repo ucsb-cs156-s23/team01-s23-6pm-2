@@ -10,7 +10,7 @@ export default function UcsbBuildingsCreatePage() {
   const onSubmit = async (ucsbbuilding) => {
     const createdUcsbBuilding = ucsbBuildingsUtils.add(ucsbbuilding);
     console.log("createdUcsbBuilding: " + JSON.stringify(createdUcsbBuilding));
-    navigate("/ucsbbuildings");
+    navigate("/buildings");
   }  
 
   return (
