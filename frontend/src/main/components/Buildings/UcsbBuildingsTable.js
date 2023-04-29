@@ -40,8 +40,8 @@ export default function UcsbBuildingsTable({
             accessor: 'name',
         },
         {
-            Header: 'Age',
-            accessor: 'age',
+            Header: 'Description',
+            accessor: 'description',
         }
     ];
 

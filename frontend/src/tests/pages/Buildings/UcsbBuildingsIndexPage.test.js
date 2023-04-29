@@ -21,11 +21,11 @@ jest.mock('main/utils/ucsbBuildingsUtils', () => {
             get: () => {
                 return {
                     nextId: 5,
-                    ucsbbuildings: [
+                    ucsbBuildingss: [
                         {
                             "id": 3,
                             "name": "Broida Hall",
-                            "age": "1967",
+                            "description": "1967",
                             "architecture": "Horizontal",
                             "location": "East"  
                         },
@@ -66,8 +66,8 @@ describe("UcsbBuildingsIndexPage tests", () => {
         const name = screen.getByText("Broida Hall");
         expect(name).toBeInTheDocument();
 
-        const age = screen.getByText("1967");
-        expect(age).toBeInTheDocument();
+        const description = screen.getByText("1967");
+        expect(description).toBeInTheDocument();
 
         expect(screen.getByTestId("UcsbBuildingsTable-cell-row-0-col-Delete-button")).toBeInTheDocument();
         expect(screen.getByTestId("UcsbBuildingsTable-cell-row-0-col-Details-button")).toBeInTheDocument();
@@ -89,8 +89,8 @@ describe("UcsbBuildingsIndexPage tests", () => {
         const name = screen.getByText("Broida Hall");
         expect(name).toBeInTheDocument();
 
-        const age = screen.getByText("1967");
-        expect(age).toBeInTheDocument();
+        const description = screen.getByText("1967");
+        expect(description).toBeInTheDocument();
 
         const deleteButton = screen.getByTestId("UcsbBuildingsTable-cell-row-0-col-Delete-button");
         expect(deleteButton).toBeInTheDocument();
@@ -106,7 +106,7 @@ describe("UcsbBuildingsIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage = `UcsbBuildingsIndexPage deleteCallback: {"id":3,"name":"Broida Hall","age":"1967"}`;
+        const expectedMessage = `UcsbBuildingsIndexPage deleteCallback: {"id":3,"name":"Broida Hall","description":"1967"}`;
         expect(message).toMatch(expectedMessage);
         restoreConsole();
 

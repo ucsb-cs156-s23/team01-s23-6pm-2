@@ -18,11 +18,13 @@ jest.mock('main/utils/ucsbBuildingsUtils', () => {
         ucsbBuildingsUtils: {
             getById: (_id) => {
                 return {
-                    ucsbbuildings: {
-                        id: 3,
-                        name: "Broida Hall",
-                        age: "1967"
-                    }
+                    ucsbBuildings: 
+                        {
+                            id: 3,
+                            name: "Broida Hall",
+                            description: "1967"
+                        }
+                    
                 }
             }
         }

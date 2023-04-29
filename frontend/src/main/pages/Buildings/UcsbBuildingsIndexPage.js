@@ -10,7 +10,7 @@ export default function UcsbBuildingsIndexPage() {
     const navigate = useNavigate();
 
     const ucsbBuildingsCollection = ucsbBuildingsUtils.get();
-    const ucsbbuildings = ucsbBuildingsCollection.ucsbbuildings;
+    const ucsbbuildings = ucsbBuildingsCollection.ucsbBuildingss;
 
     const showCell = (cell) => JSON.stringify(cell.row.values);
 

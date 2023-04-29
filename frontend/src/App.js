@@ -20,6 +20,11 @@ import GamesEditPage from "main/pages/Games/GamesEditPage";
 import GamesDetailsPage from "main/pages/Games/GamesDetailsPage.js";
 import GamesIndexPage from "main/pages/Games/GamesIndexPage";
 
+import UcsbBuildingsCreatePage from "main/pages/Buildings/UcsbBuildingsCreatePage";
+import UcsbBuildingsEditPage from "main/pages/Buildings/UcsbBuildingsEditPage";
+import UcsbBuildingsDetailsPage from "main/pages/Buildings/UcsbBuildingsDetailsPage.js";
+import UcsbBuildingsIndexPage from "main/pages/Buildings/UcsbBuildingsIndexPage";
+
 function App() {
 
   const reload = () => window.location.reload();
@@ -48,6 +53,11 @@ function App() {
         <Route exact path="/games/edit/:id" element={<GamesEditPage />} />
         <Route exact path="/games/details/:id" element={<GamesDetailsPage />} />
         <Route exact path="/games/" element={<GamesIndexPage />} />
+
+        <Route exact path="/buildings/create" element={<UcsbBuildingsCreatePage />} />
+        <Route exact path="/buildings/edit/:id" element={<UcsbBuildingsEditPage />} />
+        <Route exact path="/buildings/details/:id" element={<UcsbBuildingsDetailsPage />} />
+        <Route exact path="/buildings/" element={<UcsbBuildingsIndexPage />} />
 
       </Routes>
     </BrowserRouter>
