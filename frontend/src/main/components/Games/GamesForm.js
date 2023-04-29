@@ -67,23 +67,6 @@ function GamesForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label htmlFor="year">Year</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-year"}
-                    id="year"
-                    type="text"
-                    isInvalid={Boolean(errors.year)}
-                    {...register("year", {
-                        required: "Year is required."
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.year?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
-
-
             <Button
                 type="submit"
                 data-testid={testIdPrefix + "-submit"}
