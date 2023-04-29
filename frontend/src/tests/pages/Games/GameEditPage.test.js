@@ -19,10 +19,10 @@ jest.mock('main/utils/gamesUtils', () => {
     return {
         __esModule: true,
         gamesUtils: {
-            update: (_restaurant) => {return mockUpdate();},
+            update: (_games) => {return mockUpdate();},
             getById: (_id) => {
                 return {
-                    restaurant: {
+                    games: {
                         id: 3,
                         name: "Super Mario Bros.",
                         developer: "Nintendo"
@@ -68,7 +68,7 @@ describe("GamesEditPage tests", () => {
         const restoreConsole = mockConsole();
 
         mockUpdate.mockReturnValue({
-            "game": {
+            "games": {
                 id: 3,
                 name: "Super Mario Bros.",
                 developer: "Nintendo"
@@ -105,7 +105,7 @@ describe("GamesEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedGame: {"game":{"id":3,"name":"Super Mario Bros.","developer":"Nintendo"}`
+        const expectedMessage =  `updatedGame: {"games":{"id":3,"name":"Super Mario Bros.","developer":"Nintendo"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
